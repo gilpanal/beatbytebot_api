@@ -1,11 +1,12 @@
-function songProfile(data) {
-    return {
-      id: data.id,
-      name: data.name,
-      lyrics: data.lyrics,
-      tracks: data.tracks,
-      photo: data.photo,
-      description: data.description
-    };
+const songProfile = (data) => {
+  return {
+    id: data.id,
+    title: data.title,
+    document: data.document,
+    tracks: data.tracks,
+    photo: data.photo,
+    description: data.description,
+    type: data.type
   }
-module.exports = songProfile;
+}
+module.exports = songProfile

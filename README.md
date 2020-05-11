@@ -13,16 +13,14 @@ GrpahQL API for bunchofsongs project
 ###### A. Get all song names
 ```
 {
-  songs{name}
+  songs{id, title, photo {big_file_id}}
 }
 ```
 
 ###### B. Get all tracks from song by Id
 ```
 {
-  tracks(songId: -479857559) {
-    link
-  }
+  tracks(songId: -1001239230694){ message {date}, file_path}
 }
 ```
 
