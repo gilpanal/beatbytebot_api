@@ -16,15 +16,21 @@ GrpahQL API for bunchofsongs project
   songs{id, title, photo {big_file_id}}
 }
 ```
+###### B. Get song info by Id
+```
+{
+  songInfoById(songId:-1001239230694){description}
+}
+```
 
-###### B. Get all tracks from song by Id
+###### C. Get all tracks from song by Id
 ```
 {
   tracks(songId: -1001239230694){ message {date}, file_path}
 }
 ```
 
-###### C. Delete message in chat by Id
+###### D. Delete message in chat by Id
 ```
 {
   deleteMessage(chat_id:-479857559,message_id:148) {
@@ -33,7 +39,7 @@ GrpahQL API for bunchofsongs project
 }
 ```
 
-###### D. Get file link by id
+###### E. Get file link by id
 ```
 {
   getFileLink(file_id:"AwACAgQAAxkBAAOPXrXPJbTZBij5q6j0QnfOXo5ddG8AAvUHAALKlrFRTNmO66h3TtAZBA"){result {file_path}}

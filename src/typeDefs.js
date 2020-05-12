@@ -10,6 +10,11 @@ const typeDefs = gql`
     file_path: String!
     message: MessageInfo!  
   }
+  type DocumentInfo {
+    file_id: String!
+    file_name: String!
+    mime_type: String!
+  }
   type PhotoInfo {
     big_file_id: String!
     big_file_unique_id: String!
@@ -20,8 +25,9 @@ const typeDefs = gql`
     id: String!
     title: String!
     photo: PhotoInfo
-    description: String! 
+    description: String 
     tracks: TrackInfo
+    document: DocumentInfo
   }
   type TelBasicApiResponse {
     ok: Boolean!
@@ -40,6 +46,7 @@ const typeDefs = gql`
   }
   type Query {
     songs: [SongInfo],
+    songInfoById(songId: Float!): SongInfo,
     tracks(songId: Float!): [TrackInfo], 
     deleteMessage(chat_id: Float!, message_id: Int!): TelBasicApiResponse,  
     getFileLink(file_id: String!): TelFileApiResponse
