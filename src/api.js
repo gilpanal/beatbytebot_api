@@ -1,8 +1,11 @@
 /* https://medium.com/mehak-vohra/using-graphql-to-query-your-firebase-realtime-database-a6e6cbd6aa3a */
+/* https://github.com/heroku-examples/graphql-rent-api/blob/master/server.js */
+const http = require('http')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const firebase = require('firebase')
 require('dotenv').config()
+const port = process.env.PORT || 8080
 
 const app = express()
 
@@ -14,17 +17,28 @@ const firebaseClient = firebase.initializeApp({
     databaseURL: process.env.FIREBASE_DATABASE_URL,
     projectId: process.env.FIREBASE_PROJECT_ID
 })
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: ({ req }) => {
-        return {
-            headers: req.headers,
-            firebaseClient
-        }
+const server = http.createServer(app)
+const graphqlServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    return {
+        headers: req.headers,
+        firebaseClient
     }
+  },
+  playground: true,
+  introspection: true
 })
-server.applyMiddleware({ app })
-app.listen({ port: 4000 }, () => {
-    console.log('Server has started 🚀 http://localhost:4000/graphql')
+
+app.get('/', (req, res) => {
+  res.redirect('/graphql')
+})
+
+graphqlServer.applyMiddleware({
+  app
+})
+
+server.listen(port, () => {
+  console.log(`GraphQL Server running on port ${port}`)
 })

@@ -10,9 +10,15 @@ const resolvers = {
       const data = await fetch(`${baseURL}/songs.json`)
       const dataJson = await data.json()
       const keys = Object.keys(dataJson)
-      const mapsKeys = keys.map((item) => {
-        const songsData = dataJson[item]
-        const graphqlSongs = songProfile(songsData)
+      const mapsKeys = keys.map(async (item) => {
+        const songsData = dataJson[item]        
+        let photo_url = null           
+        if(songsData.photo){          
+          const photoInfo = await fetch(`${API_BOT + process.env.BOT_TOKEN}/getFile?file_id=${songsData.photo.small_file_id}`)          
+          const photoJson = await photoInfo.json()    
+          photo_url =`${API_TEL}file/bot${process.env.BOT_TOKEN}/${photoJson.result.file_path}`           
+        }               
+        const graphqlSongs = songProfile(songsData, photo_url, null)        
         return graphqlSongs
       })
       return mapsKeys
@@ -20,7 +26,13 @@ const resolvers = {
     songInfoById: async (root, { songId }) => {
       const data = await fetch(`${baseURL}/songs/${songId}.json`)
       const dataJson = await data.json()
-      const graphqlSong = songProfile(dataJson)      
+      let doc_url = null 
+      if(dataJson.document){          
+        const docInfo = await fetch(`${API_BOT + process.env.BOT_TOKEN}/getFile?file_id=${dataJson.document.file_id}`)          
+        const docJson = await docInfo.json()    
+        doc_url =`${API_TEL}file/bot${process.env.BOT_TOKEN}/${docJson.result.file_path}`           
+      }
+      const graphqlSong = songProfile(dataJson, null, doc_url)      
       return graphqlSong
     },
     tracks: async (root, { songId }) => {

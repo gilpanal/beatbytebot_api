@@ -1,11 +1,12 @@
 {
   "name": "bunchofsongs_api",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "src/api.js",
   "license": "MIT",
   "scripts": {
     "start": "node src/api.js"
   },
+  "author": "gilpanal",
   "dependencies": {
     "apollo-server": "^2.13.0",
     "apollo-server-express": "^2.13.0",
@@ -13,5 +14,8 @@
     "express": "^4.17.1",
     "firebase": "^7.14.3",
     "graphql": "^15.0.0"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

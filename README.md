@@ -10,16 +10,16 @@ GrpahQL API for bunchofsongs project
 
 ## EXAMPLES OF REQUESTS:
 
-###### A. Get all song names
+###### A. Get all song names and other data
 ```
 {
-  songs{id, title, photo {big_file_id}}
+  songs{id, title, photo_url}
 }
 ```
 ###### B. Get song info by Id
 ```
 {
-  songInfoById(songId:-1001239230694){description}
+  songInfoById(songId:-1001239230694){doc_url}
 }
 ```
 

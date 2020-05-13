@@ -28,6 +28,8 @@ const typeDefs = gql`
     description: String 
     tracks: TrackInfo
     document: DocumentInfo
+    photo_url: String
+    doc_url: String
   }
   type TelBasicApiResponse {
     ok: Boolean!
