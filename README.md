@@ -19,14 +19,14 @@ GrpahQL API for bunchofsongs project
 ###### B. Get song info by Id
 ```
 {
-  songInfoById(songId:-1001239230694){doc_url}
+  songInfoById(songId:-1001315827508){doc_url}
 }
 ```
 
 ###### C. Get all tracks from song by Id
 ```
 {
-  tracks(songId: -1001239230694){ message {date}, file_path}
+  tracks(songId: -1001315827508){ message {audio {title}}, file_path}
 }
 ```
 
@@ -42,6 +42,6 @@ GrpahQL API for bunchofsongs project
 ###### E. Get file link by id
 ```
 {
-  getFileLink(file_id:"AwACAgQAAxkBAAOPXrXPJbTZBij5q6j0QnfOXo5ddG8AAvUHAALKlrFRTNmO66h3TtAZBA"){result {file_path}}
+  getFileLink(file_id:"AwACAgQAAx0CTm3vNAADBl69xdoTbd6fsZ7TgVTthlf-wZJmAAKzBgACvdfxUZiZdihOfhpSGQQ"){result {file_path}}
 }
 ```

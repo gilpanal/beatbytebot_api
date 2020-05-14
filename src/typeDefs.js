@@ -1,9 +1,31 @@
 
 const { gql } = require('apollo-server')
 const typeDefs = gql`
+  type Chat {
+    id: Float!
+    title: String!
+    type: String!
+  }
+  type FromGroup {
+    first_name: String!
+    id: Int!
+    username: String!
+  }
+  type AudioVoice {
+    durantion: Int!  
+    file_id: String!
+    file_size: Int!
+    mime_type: String!
+    performer: String
+    title: String
+  }
   type MessageInfo {
-    id: String!
-    date: String!   
+    message_id: String!
+    date: String! 
+    chat: Chat!
+    from: FromGroup
+    audio: AudioVoice
+    voice: AudioVoice  
   }
   type TrackInfo {
     id: String!
