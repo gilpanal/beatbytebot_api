@@ -3,7 +3,7 @@ GrpahQL API for bunchofsongs project
 
 ## HOW TO RUN IT LOCALLY:
 1. ```npm i```
-2. ``` Modify ".env" file```
+2. ``` Copy the content of ".env_template" to ".env" file and fill with it with proper info```
 3. ```npm start```
 
 **NOTE:** A Firebase Database and a Telegram Bot are required to fully start the project locally

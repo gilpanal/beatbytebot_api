@@ -15,16 +15,10 @@ const typeDefs = gql`
     file_name: String!
     mime_type: String!
   }
-  type PhotoInfo {
-    big_file_id: String!
-    big_file_unique_id: String!
-    small_file_id: String!
-    small_file_unique_id: String!
-  }
   type SongInfo {
     id: String!
     title: String!
-    photo: PhotoInfo
+    photo: String
     description: String 
     tracks: TrackInfo
     document: DocumentInfo
