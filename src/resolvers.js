@@ -40,6 +40,7 @@ const resolvers = {
     tracks: async (root, { songId }) => {
       const data = await fetch(`${baseURL}/songs/${songId}/tracks.json`)
       const dataJson = await data.json()
+      if(!dataJson) return null
       const keys = Object.keys(dataJson)
       const mapsKeys = keys.map(async (item) => {
         const tracksData = dataJson[item]
