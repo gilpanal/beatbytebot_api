@@ -45,3 +45,9 @@ GrpahQL API for bunchofsongs project
   getFileLink(file_id:"AwACAgQAAx0CTm3vNAADBl69xdoTbd6fsZ7TgVTthlf-wZJmAAKzBgACvdfxUZiZdihOfhpSGQQ"){result {file_path}}
 }
 ```
+###### F. Get songs by collection name
+```
+{
+  collection(collectionName:"munsell"){id, title, photo_url}
+}
+```

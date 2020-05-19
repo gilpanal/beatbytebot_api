@@ -41,6 +41,7 @@ const typeDefs = gql`
     id: String!
     title: String!
     photo: String
+    collection: String
     description: String 
     tracks: TrackInfo
     document: DocumentInfo
@@ -64,6 +65,7 @@ const typeDefs = gql`
   }
   type Query {
     songs: [SongInfo],
+    collection(collectionName: String!): [SongInfo],
     songInfoById(songId: Float!): SongInfo,
     tracks(songId: Float!): [TrackInfo], 
     deleteMessage(chat_id: Float!, message_id: Int!): TelBasicApiResponse,  
