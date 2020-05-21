@@ -47,13 +47,17 @@ const resolvers = {
       const data = await fetch(`${baseURL}/songs/${songId}.json`)
       const dataJson = await data.json()
       let doc_url = null
-      if (dataJson.document) {
+      if (dataJson && dataJson.document) {
         const docInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${dataJson.document.file_id}`)
         const docJson = await docInfo.json()
-        doc_url = `${API_TEL}file/bot${BOT_TOKEN}/${docJson.result.file_path}`
-      }
-      const graphqlSong = songProfile(dataJson, null, doc_url)
-      return graphqlSong
+        if(docJson.ok){
+          doc_url = `${API_TEL}file/bot${BOT_TOKEN}/${docJson.result.file_path}`
+        }
+        const graphqlSong = songProfile(dataJson, null, doc_url)
+        return graphqlSong
+      } else {
+        return null
+      }      
     },
     tracks: async (root, { songId }) => {
       const data = await fetch(`${baseURL}/songs/${songId}/tracks.json`)

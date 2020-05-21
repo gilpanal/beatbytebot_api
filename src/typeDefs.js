@@ -59,8 +59,8 @@ const typeDefs = gql`
   }
   type TelFileApiResponse {
     ok: Boolean!
-    result: TelApiFileResult!
-    error_code: Int!
+    result: TelApiFileResult
+    error_code: Int
     description: String!
   }
   type Query {
