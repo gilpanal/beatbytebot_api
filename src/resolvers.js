@@ -17,7 +17,9 @@ const getSongs = async (data) => {
       if (songsData.photo) {
         const photoInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${songsData.photo}`)
         const photoJson = await photoInfo.json()
-        photo_url = `${API_TEL}file/bot${BOT_TOKEN}/${photoJson.result.file_path}`
+        if(photoJson.ok){
+          photo_url = `${API_TEL}file/bot${BOT_TOKEN}/${photoJson.result.file_path}`
+        }
       }
       const graphqlSongs = songProfile(songsData, photo_url, null)
       return graphqlSongs
