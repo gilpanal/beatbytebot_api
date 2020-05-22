@@ -16,10 +16,21 @@ GrpahQL API for bunchofsongs project
   songs{id, title, photo_url}
 }
 ```
-###### B. Get song info by Id
+###### B1. Get song info by Id
 ```
 {
   songInfoById(songId:-1001315827508){doc_url}
+}
+```
+###### B2. Get song info by Id and user logged
+```
+{
+  songInfoById(songId:-1001315827508, userInfo: { id: ID,
+    first_name: "firstname",
+    username: "username",
+    photo_url: "https://t.me/i/userpic/320/photo.jpg",
+    auth_date: AUTH_DATE,
+    hash: "hash"}){doc_url, user_permission}
 }
 ```
 

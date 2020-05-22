@@ -1,3 +1,4 @@
+const { createHash, createHmac } = require('crypto')
 const songProfile = require('./songProfile')
 const trackProfile = require('./trackProfile')
 const MODE = process.env.MODE
@@ -6,6 +7,19 @@ const BOT_TOKEN = (MODE === 'PROD') ? process.env.PROD_BOT_TOKEN : process.env.D
 const API_TEL = 'https://api.telegram.org/'
 const API_BOT = API_TEL + 'bot'
 
+/* https://gist.github.com/Pitasi/574cb19348141d7bf8de83a0555fd2dc */
+const secret = createHash('sha256').update(BOT_TOKEN).digest()
+
+const checkSignature = ({ hash, ...data }) => {
+  const checkString = Object.keys(data)
+    .sort()
+    .map(k => (`${k}=${data[k]}`))
+    .join('\n')
+  const hmac = createHmac('sha256', secret)
+    .update(checkString)
+    .digest('hex')
+  return hmac === hash
+}
 const getSongs = async (data) => {
   const dataJson = await data.json()
   
@@ -43,17 +57,30 @@ const resolvers = {
       const dataJson = await getSongs(data)
       return dataJson 
     },
-    songInfoById: async (root, { songId }) => {
+    songInfoById: async (root, { songId, userInfo }) => {
       const data = await fetch(`${baseURL}/songs/${songId}.json`)
       const dataJson = await data.json()
       let doc_url = null
-      if (dataJson && dataJson.document) {
-        const docInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${dataJson.document.file_id}`)
-        const docJson = await docInfo.json()
-        if(docJson.ok){
-          doc_url = `${API_TEL}file/bot${BOT_TOKEN}/${docJson.result.file_path}`
+      let user_permission = false
+      if (dataJson) {
+        if(dataJson.document){
+          const docInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${dataJson.document.file_id}`)
+          const docJson = await docInfo.json()
+          if(docJson.ok){
+            doc_url = `${API_TEL}file/bot${BOT_TOKEN}/${docJson.result.file_path}`
+          }
+        }       
+        if(userInfo){                   
+          const isValid = await checkSignature(userInfo)
+          if(isValid){
+            const getChatMember = await fetch(`${API_BOT + BOT_TOKEN}/getChatMember?chat_id=${songId}&user_id=${userInfo.id}`)
+            const memberJson = await getChatMember.json()
+            if(memberJson.ok){
+              user_permission = memberJson.result.status === 'creator' || memberJson.result.status === 'administrator'
+            }         
+          }         
         }
-        const graphqlSong = songProfile(dataJson, null, doc_url)
+        const graphqlSong = songProfile(dataJson, null, doc_url, user_permission)
         return graphqlSong
       } else {
         return null

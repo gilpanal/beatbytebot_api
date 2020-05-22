@@ -47,6 +47,7 @@ const typeDefs = gql`
     document: DocumentInfo
     photo_url: String
     doc_url: String
+    user_permission: Boolean
   }
   type TelBasicApiResponse {
     ok: Boolean!
@@ -63,10 +64,18 @@ const typeDefs = gql`
     error_code: Int
     description: String!
   }
+  input UserInfo {
+    auth_date: Int!
+    first_name: String!
+    hash: String!
+    id: Int!
+    photo_url: String
+    username: String
+  }
   type Query {
     songs: [SongInfo],
     collection(collectionName: String!): [SongInfo],
-    songInfoById(songId: Float!): SongInfo,
+    songInfoById(songId: Float!, userInfo: UserInfo): SongInfo,
     tracks(songId: Float!): [TrackInfo], 
     deleteMessage(chat_id: Float!, message_id: Int!): TelBasicApiResponse,  
     getFileLink(file_id: String!): TelFileApiResponse
