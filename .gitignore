@@ -2,3 +2,4 @@
 /heroku
 package-lock.json
 .env
+test_userInfo.js
