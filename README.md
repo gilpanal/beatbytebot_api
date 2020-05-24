@@ -41,13 +41,24 @@ GrpahQL API for bunchofsongs project
 }
 ```
 
-###### D. Delete message in chat by Id
+###### D. Edit message caption to "delete" in chat by Id and completely remove at DB
 ```
 {
-  deleteMessage(chat_id:-479857559,message_id:148) {
+  deleteMessage(chat_id:-1001315827508,message_id:316, track_id:"AgADIAYAAgfkUFI_1590273380", userInfo: UserInfo! ) {
     ok
   }
 }
+
+Where UserInfo is something like:
+
+{ id: ID,
+  first_name: "firstname",
+  username: "username",
+  photo_url: "https://t.me/i/userpic/320/photo.jpg",
+  auth_date: AUTH_DATE,
+  hash: "hash"
+}
+
 ```
 
 ###### E. Get file link by id

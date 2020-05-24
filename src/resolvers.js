@@ -101,9 +101,26 @@ const resolvers = {
       })
       return mapsKeys
     },
-    deleteMessage: async (root, { chat_id, message_id }) => {
-      const data = await fetch(`${API_BOT + BOT_TOKEN}/deleteMessage?chat_id=${chat_id}&message_id=${message_id}`)
-      const dataJson = await data.json()
+    deleteMessage: async (root, { chat_id, message_id, track_id, userInfo }) => {  
+      let dataJson = {ok:false}
+      const isValid = await checkSignature(userInfo)   
+      if(isValid){
+        const getChatMember = await fetch(`${API_BOT + BOT_TOKEN}/getChatMember?chat_id=${chat_id}&user_id=${userInfo.id}`)
+        const memberJson = await getChatMember.json()        
+        if(memberJson.ok){
+          const user_permission = memberJson.result.status === 'creator' || memberJson.result.status === 'administrator'
+          if(user_permission){
+            // Only works for channels, not groups
+            const data = await fetch(`${API_BOT + BOT_TOKEN}/editMessageCaption?chat_id=${chat_id}&message_id=${message_id}&caption=delete`)            
+            dataJson = await data.json()                     
+            // will delete from DB independently of message still exists in Telegram
+            const rmDB = await fetch(`${baseURL}/songs/${chat_id}/tracks/${track_id}.json`, { method: 'delete' })  
+            dataJson.ok = rmDB.ok                                
+          }
+        }         
+      } else {
+        dataJson.description = 'Telegram user not valid'
+      }                
       return dataJson
     },
     getFileLink: async (root, { file_id }) => {

@@ -14,6 +14,7 @@ const typeDefs = gql`
   type AudioVoice {
     durantion: Int!  
     file_id: String!
+    file_unique_id: String!
     file_size: Int!
     mime_type: String!
     performer: String
@@ -51,9 +52,8 @@ const typeDefs = gql`
   }
   type TelBasicApiResponse {
     ok: Boolean!
-    result: Boolean!
-    error_code: Int!
-    description: String!
+    error_code: Int
+    description: String
   }
   type TelApiFileResult {
     file_path: String!
@@ -77,7 +77,7 @@ const typeDefs = gql`
     collection(collectionName: String!): [SongInfo],
     songInfoById(songId: Float!, userInfo: UserInfo): SongInfo,
     tracks(songId: Float!): [TrackInfo], 
-    deleteMessage(chat_id: Float!, message_id: Int!): TelBasicApiResponse,  
+    deleteMessage(chat_id: Float!, message_id: Int!, track_id: String!, userInfo: UserInfo!): TelBasicApiResponse,  
     getFileLink(file_id: String!): TelFileApiResponse
   }`
 module.exports = typeDefs
