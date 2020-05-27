@@ -3,7 +3,7 @@ GrpahQL API for bunchofsongs project
 
 ## HOW TO RUN IT LOCALLY:
 1. ```npm i```
-2. ``` Copy the content of ".env_template" to ".env" file and fill with it with proper info```
+2. ``` Rename the file "src/config_template.js" to "src/config.js" and fill with it with proper info```
 3. ```npm start```
 
 **NOTE:** A Firebase Database and a Telegram Bot are required to fully start the project locally
@@ -25,11 +25,11 @@ GrpahQL API for bunchofsongs project
 ###### B2. Get song info by Id and user logged
 ```
 {
-  songInfoById(songId:-1001315827508, userInfo: { id: ID,
+  songInfoById(songId:-1001315827508, userInfo: { id: 165123,
     first_name: "firstname",
     username: "username",
     photo_url: "https://t.me/i/userpic/320/photo.jpg",
-    auth_date: AUTH_DATE,
+    auth_date: 21367123,
     hash: "hash"}){doc_url, user_permission}
 }
 ```
@@ -44,19 +44,15 @@ GrpahQL API for bunchofsongs project
 ###### D. Edit message caption to "delete" in chat by Id and completely remove at DB
 ```
 {
-  deleteMessage(chat_id:-1001315827508,message_id:316, track_id:"AgADIAYAAgfkUFI_1590273380", userInfo: UserInfo! ) {
-    ok
-  }
-}
-
-Where UserInfo is something like:
-
-{ id: ID,
+  deleteMessage(chat_id:-1001315827508,message_id:316, track_id:"AgADIAYAAgfkUFI_1590273380", userInfo: { id: 165123,
   first_name: "firstname",
   username: "username",
   photo_url: "https://t.me/i/userpic/320/photo.jpg",
-  auth_date: AUTH_DATE,
+  auth_date: 21367123,
   hash: "hash"
+} ) {
+    ok, description
+  }
 }
 
 ```

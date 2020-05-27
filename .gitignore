@@ -1,5 +1,5 @@
 /node_modules
 /heroku
 package-lock.json
-.env
-test_userInfo.js
+src/config.js
+test/test_userInfo.js
