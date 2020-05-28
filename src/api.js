@@ -57,15 +57,23 @@ app.get('/', (req, res) => {
 app.post('/fileUpload', multer.single('audio'), async (req, res) => {
 
   let uploadResponse = { ok: false, result: null, error: 401, description: 'Unauthorized' }
-  const user_info = req.body && req.body.user_info  
-  if (user_info) {  
-    const userJson = JSON.parse(user_info)
-    userValid = await checkSignature(userJson)  
-    if (userValid) {      
-      uploadResponse = await fileUpload(req)    
-    } 
-  } 
-  res.json(uploadResponse)    
+  const user_info = req.body && req.body.user_info
+  let userJson = null
+  try {
+    userJson = JSON.parse(user_info)   
+  } catch (error){
+    uploadResponse.error = 400
+    uploadResponse.description = 'Bad Request'    
+  } finally {
+    if (userJson) { 
+      const userValid = await checkSignature(userJson)
+      if (userValid) {    
+        uploadResponse = await fileUpload(req)  
+      }
+    }
+    res.json(uploadResponse)
+  }
+      
 })
 
 graphqlServer.applyMiddleware({
