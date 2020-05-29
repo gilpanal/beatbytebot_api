@@ -57,7 +57,7 @@ app.get('/testFileUploadForm', (req, res) => {
   res.sendFile(path.join(__dirname + '../../test/testForm.html'))
 })
 
-app.get('/proxy/:proxyUrl*', async (req, res) => {  
+app.get('/proxy/:proxyUrl*', (req, res) => {  
   // Strip '/proxy' from the front of the URL, else the proxy won't work.
   req.url = req.url.replace('/proxy/', '/')
   //req.url = req.url.replace('/proxy/', `${API_TEL}file/bot${BOT_TOKEN}/`)
