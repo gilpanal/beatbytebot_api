@@ -12,6 +12,18 @@ const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_
 
 const port = process.env.PORT || 8080
 
+const corshost = process.env.HOST || 'localhost'
+const corsport = process.env.PORT || 8090
+
+var cors_proxy = require('cors-anywhere')
+cors_proxy.createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: ['cookie', 'cookie2']
+}).listen(corsport, corshost, function() {
+    console.log('Running CORS Anywhere on ' + corshost + ':' + corsport)
+})
+
 const app = express()
 
 const typeDefs = require('./typeDefs')
