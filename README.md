@@ -51,7 +51,7 @@ GrpahQL API for bunchofsongs project
   auth_date: 21367123,
   hash: "hash"
 } ) {
-    ok, description
+    ok, result {message_id}, description
   }
 }
 

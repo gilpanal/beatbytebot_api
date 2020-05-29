@@ -50,8 +50,16 @@ const typeDefs = gql`
     doc_url: String
     user_permission: Boolean
   }
+  type Result {
+    message_id: String
+    chat: Chat
+    date: Int
+    audio: AudioVoice
+    voice: AudioVoice
+  }
   type TelBasicApiResponse {
     ok: Boolean!
+    result: Result
     error_code: Int
     description: String
   }
