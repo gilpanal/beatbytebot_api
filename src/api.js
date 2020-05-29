@@ -8,20 +8,15 @@ const path = require('path')
 const multer = require('multer')()
 const { ApolloServer } = require('apollo-server-express')
 const firebase = require('firebase')
-const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_PROJECT_ID } = require('./config')
+const { API_TEL, BOT_TOKEN, FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_PROJECT_ID } = require('./config')
 
 const port = process.env.PORT || 8080
 
-const corshost = process.env.HOST || 'localhost'
-const corsport = process.env.PORT || 8090
-
-var cors_proxy = require('cors-anywhere')
-cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-}).listen(corsport, corshost, function() {
-    console.log('Running CORS Anywhere on ' + corshost + ':' + corsport)
+const cors_proxy = require('cors-anywhere')
+const proxy = cors_proxy.createServer({
+  originWhitelist: [], // Allow all origins
+  requireHeader: ['origin', 'x-requested-with'],
+  removeHeaders: ['cookie', 'cookie2']
 })
 
 const app = express()
@@ -60,6 +55,14 @@ app.use(express.static('test'))
 
 app.get('/testFileUploadForm', (req, res) => {
   res.sendFile(path.join(__dirname + '../../test/testForm.html'))
+})
+
+app.get('/proxy/:proxyUrl*', async (req, res) => {  
+  // Strip '/proxy' from the front of the URL, else the proxy won't work.
+  req.url = req.url.replace('/proxy/', '/')
+  //req.url = req.url.replace('/proxy/', `${API_TEL}file/bot${BOT_TOKEN}/`)
+  //console.log(req.url)
+  proxy.emit('request', req, res)  
 })
 
 app.get('/', (req, res) => {
