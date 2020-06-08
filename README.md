@@ -3,7 +3,7 @@ GrpahQL API for bunchofsongs project
 
 ## Summary:
 This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs
-It is also recommended to run the bot project to test the API properly, as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. You can also grab the file `testDB.json` at `test` folder [link]https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json[link] and directly import into Firebase DB to simulate the Bot input.
+It is also recommended to run the bot project to test the API properly, as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. You can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
 
 ## Requirements:
 - Node.js (v14)
@@ -41,6 +41,8 @@ It is also recommended to run the bot project to test the API properly, as the c
 >         }
 >       }
 >     }
+
+4.- For Telegram User Info, check widget documentation:https://core.telegram.org/widgets/login
 
 ## How to test it:
 
@@ -106,7 +108,7 @@ It is also recommended to run the bot project to test the API properly, as the c
 ##### G. Send audio file from web app
 Go to http://127.0.0.1:8080/testFileUploadForm and complete the form with the proper information:
 - Chat Id: the id of the channel or group. In exmaple: -455452954, -1001476711416
-- User info: produced by Telegram Login Widget. In example:
+- User info: produced by Telegram Login Widget. See Note 4 above. In example:
 >     {
 >	      "id": 12345678,
 >	      "first_name": "first_name",
