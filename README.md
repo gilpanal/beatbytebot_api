@@ -1,26 +1,26 @@
 # bunchofsongs_api
 GrpahQL API for bunchofsongs project
 
-## SUMMARY:
+## Summary:
 This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs
 It is also recommended to run the bot project to test the API properly, as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot.
 
-## REQUIREMENTS:
+## Requirements:
 - Node.js (v14)
 - Firebase Project and Database: https://firebase.google.com/docs/admin/setup#set-up-project-and-service-account
 - Telegram Bot Token: https://core.telegram.org/bots#6-botfather
 
-## HOW TO RUN IT LOCALLY:
+## How to run it locally:
 1. ```git clone https://github.com/gilpanal/bunchofsongs_api.git```
 2. ```cd bunchofsongs_api```
 3. ```npm i```
-4. Rename the file `src/config_template.js` to `src/config.js` and fill it with the proper info. See Note 1,2 below.
+4. Rename the file `src/config_template.js` to `src/config.js` and fill it with the proper info. See Notes 1,2 below.
 5. ```npm start```
 6. Go to http://127.0.0.1:8080
 
-NOTES:
+###### NOTES:
 
-1.- See: https://firebase.google.com/docs/admin/setup#initialize-sdk
+1.- How to get the JSON key: https://firebase.google.com/docs/admin/setup#initialize-sdk
 
 2.- For MODE='DEV' it's enough by changing the following values:
 
@@ -42,7 +42,7 @@ NOTES:
 >       }
 >     }
 
-## EXAMPLES OF REQUESTS:
+## How to test it:
 
 ###### A. Get all song names and other data
 ```
@@ -104,7 +104,7 @@ NOTES:
 }
 ```
 
-## MORE INFO:
+## More info:
 
 Wiki: https://github.com/gilpanal/bunchofsongs_bot/wiki
 
