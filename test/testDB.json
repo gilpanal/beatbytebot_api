@@ -1,0 +1,138 @@
+{
+  "songs" : {
+    "-455452954" : {
+      "all_members_are_administrators" : true,
+      "id" : -455452954,
+      "permissions" : {
+        "can_add_web_page_previews" : true,
+        "can_change_info" : true,
+        "can_invite_users" : true,
+        "can_pin_messages" : true,
+        "can_send_media_messages" : true,
+        "can_send_messages" : true,
+        "can_send_other_messages" : true,
+        "can_send_polls" : true
+      },
+      "title" : "DemoGroupBunch",
+      "tracks" : {
+        "AgADSggAAhSf8VI_1591614995" : {
+          "id" : "AwACAgQAAxkBAAMHXt4eE38-QAbQ-S9sQYBGK2M2FfEAAkoIAAIUn_FSKDb8kOJb7qIaBA",
+          "message" : {
+            "chat" : {
+              "all_members_are_administrators" : true,
+              "id" : -455452954,
+              "title" : "DemoGroupBunch",
+              "type" : "group"
+            },
+            "date" : 1591614995,
+            "from" : {
+              "first_name" : "josemanuel",
+              "id" : 15476562,
+              "is_bot" : false,
+              "username" : "standclearoftheclosingdoors"
+            },
+            "message_id" : 7,
+            "voice" : {
+              "duration" : 1,
+              "file_id" : "AwACAgQAAxkBAAMHXt4eE38-QAbQ-S9sQYBGK2M2FfEAAkoIAAIUn_FSKDb8kOJb7qIaBA",
+              "file_size" : 7176,
+              "file_unique_id" : "AgADSggAAhSf8VI",
+              "mime_type" : "audio/ogg"
+            }
+          }
+        },
+        "AgADiwcAArPy6VI_1591545346" : {
+          "id" : "AwACAgQAAxkBAAMDXt0OAdP4zHBvBYRQLwfBQZQSf0cAAosHAAKz8ulSX7J9qssSzr4aBA",
+          "message" : {
+            "chat" : {
+              "all_members_are_administrators" : true,
+              "id" : -455452954,
+              "title" : "DemoBunch",
+              "type" : "group"
+            },
+            "date" : 1591545346,
+            "from" : {
+              "first_name" : "josemanuel",
+              "id" : 15476562,
+              "is_bot" : false,
+              "username" : "standclearoftheclosingdoors"
+            },
+            "message_id" : 3,
+            "voice" : {
+              "duration" : 0,
+              "file_id" : "AwACAgQAAxkBAAMDXt0OAdP4zHBvBYRQLwfBQZQSf0cAAosHAAKz8ulSX7J9qssSzr4aBA",
+              "file_size" : 4199,
+              "file_unique_id" : "AgADiwcAArPy6VI",
+              "mime_type" : "audio/ogg"
+            }
+          }
+        }
+      },
+      "type" : "group"
+    },
+    "-1001476711416" : {
+      "id" : -1001476711416,
+      "title" : "DemoChanBunch",
+      "tracks" : {
+        "AgADOwcAAk_K6FI_1591545625" : {
+          "id" : "AwACAgQAAx0CWATT-AADA17dDxn-A5N27TXJbV8otSzl_LDpAAI7BwACT8roUtCoJ11NuxV3GgQ",
+          "message" : {
+            "chat" : {
+              "id" : -1001476711416,
+              "title" : "DemoChanBunch",
+              "type" : "channel"
+            },
+            "date" : 1591545625,
+            "message_id" : 3,
+            "voice" : {
+              "duration" : 0,
+              "file_id" : "AwACAgQAAx0CWATT-AADA17dDxn-A5N27TXJbV8otSzl_LDpAAI7BwACT8roUtCoJ11NuxV3GgQ",
+              "file_size" : 4422,
+              "file_unique_id" : "AgADOwcAAk_K6FI",
+              "mime_type" : "audio/ogg"
+            }
+          }
+        },
+        "AgADjgcAArVt8VI_1591614913" : {
+          "id" : "AwACAgQAAx0CWATT-AADBl7eHcFXOOfi8o6q33PaOkOMHEQRAAKOBwACtW3xUm_5nzYHZZUOGgQ",
+          "message" : {
+            "chat" : {
+              "id" : -1001476711416,
+              "title" : "DemoChanBunch",
+              "type" : "channel"
+            },
+            "date" : 1591614913,
+            "message_id" : 6,
+            "voice" : {
+              "duration" : 1,
+              "file_id" : "AwACAgQAAx0CWATT-AADBl7eHcFXOOfi8o6q33PaOkOMHEQRAAKOBwACtW3xUm_5nzYHZZUOGgQ",
+              "file_size" : 5296,
+              "file_unique_id" : "AgADjgcAArVt8VI",
+              "mime_type" : "audio/ogg"
+            }
+          }
+        },
+        "AgADjwcAArVt8VI_1591615038" : {
+          "id" : "AwACAgQAAx0CWATT-AADCF7eHj7x8xZa28JN1Kfib9PsmRCNAAKPBwACtW3xUsL517XFnTK2GgQ",
+          "message" : {
+            "chat" : {
+              "id" : -1001476711416,
+              "title" : "DemoChanBunch",
+              "type" : "channel"
+            },
+            "date" : 1591615038,
+            "message_id" : 8,
+            "voice" : {
+              "duration" : 1,
+              "file_id" : "AwACAgQAAx0CWATT-AADCF7eHj7x8xZa28JN1Kfib9PsmRCNAAKPBwACtW3xUsL517XFnTK2GgQ",
+              "file_size" : 7404,
+              "file_unique_id" : "AgADjwcAArVt8VI",
+              "mime_type" : "audio/ogg"
+            }
+          }
+        }
+      },
+      "type" : "channel"
+    }
+  }
+}
