@@ -74,6 +74,27 @@
       "id" : -1001476711416,
       "title" : "DemoChanBunch",
       "tracks" : {
+        "AgAD7gcAAjNIeFI_1591626777" : {
+          "id" : "CQACAgQAAx0CWATT-AADCl7eTBlbDDAUKkwyAjSpxEPUifLBAALuBwACM0h4UmryAAG3rg35jhoE",
+          "message" : {
+            "audio" : {
+              "duration" : 193,
+              "file_id" : "CQACAgQAAx0CWATT-AADCl7eTBlbDDAUKkwyAjSpxEPUifLBAALuBwACM0h4UmryAAG3rg35jhoE",
+              "file_size" : 775712,
+              "file_unique_id" : "AgAD7gcAAjNIeFI",
+              "mime_type" : "audio/mpeg",
+              "performer" : "gilpanal",
+              "title" : "acustica_1"
+            },
+            "chat" : {
+              "id" : -1001476711416,
+              "title" : "DemoChanBunch",
+              "type" : "channel"
+            },
+            "date" : 1591626777,
+            "message_id" : 10
+          }
+        },
         "AgADOwcAAk_K6FI_1591545625" : {
           "id" : "AwACAgQAAx0CWATT-AADA17dDxn-A5N27TXJbV8otSzl_LDpAAI7BwACT8roUtCoJ11NuxV3GgQ",
           "message" : {
