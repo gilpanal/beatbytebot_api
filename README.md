@@ -118,7 +118,8 @@ Go to http://127.0.0.1:8080/testFileUploadForm and complete the form with the pr
 >	      "hash": "hash_code"
 >     }
 - File data: choose a valid audio file from your browser.
-Open the Developer Console Tools from your browser
+
+Open the Developer Console Tools from your browser to check the response
 
 ## More info:
 
