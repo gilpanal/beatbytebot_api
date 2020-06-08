@@ -20,7 +20,7 @@ As an option you can also grab the file `testDB.json` at `test` folder https://r
 
 #### NOTES:
 
-1.- How to get the JSON key: https://firebase.google.com/docs/admin/setup#initialize-sdk
+1.- To collect the right information from Firebase DB check: https://github.com/gilpanal/bunchofsongs_api/wiki/Firebase-Setup
 
 2.- For MODE='DEV' it's enough by changing the following values:
 
