@@ -19,6 +19,7 @@ It is also recommended to run the bot project to test the API properly, as the c
 6. Go to http://127.0.0.1:8080
 
 NOTES:
+
 1.- See: https://firebase.google.com/docs/admin/setup#initialize-sdk
 
 2.- For MODE='DEV' it's enough by changing the following values:
