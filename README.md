@@ -18,7 +18,7 @@ It is also recommended to run the bot project to test the API properly, as the c
 5. ```npm start```
 6. Go to http://127.0.0.1:8080
 
-###### NOTES:
+#### NOTES:
 
 1.- How to get the JSON key: https://firebase.google.com/docs/admin/setup#initialize-sdk
 
@@ -44,19 +44,19 @@ It is also recommended to run the bot project to test the API properly, as the c
 
 ## How to test it:
 
-###### A. Get all song names and other data
+##### A. Get all song names and other data
 ```
 {
   songs{id, title, photo_url}
 }
 ```
-###### B1. Get song info by Id
+##### B1. Get song info by Id
 ```
 {
   songInfoById(songId:-1001315827508){doc_url}
 }
 ```
-###### B2. Get song info by Id and user logged
+##### B2. Get song info by Id and user logged
 ```
 {
   songInfoById(songId:-1001315827508, userInfo: { id: 165123,
@@ -68,14 +68,14 @@ It is also recommended to run the bot project to test the API properly, as the c
 }
 ```
 
-###### C. Get all tracks from song by Id
+##### C. Get all tracks from song by Id
 ```
 {
   tracks(songId: -1001315827508){ message {audio {title}}, file_path}
 }
 ```
 
-###### D. Edit message caption to "delete" in chat by Id and completely remove at DB
+##### D. Edit message caption to "delete" in chat by Id and completely remove at DB
 ```
 {
   deleteMessage(chat_id:-1001315827508,message_id:316, track_id:"AgADIAYAAgfkUFI_1590273380", userInfo: { id: 165123,
@@ -91,13 +91,13 @@ It is also recommended to run the bot project to test the API properly, as the c
 
 ```
 
-###### E. Get file link by id
+##### E. Get file link by id
 ```
 {
   getFileLink(file_id:"AwACAgQAAx0CTm3vNAADBl69xdoTbd6fsZ7TgVTthlf-wZJmAAKzBgACvdfxUZiZdihOfhpSGQQ"){result {file_path}}
 }
 ```
-###### F. Get songs by collection name
+##### F. Get songs by collection name
 ```
 {
   collection(collectionName:"munsell"){id, title, photo_url}
