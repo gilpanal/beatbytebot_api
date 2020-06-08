@@ -1,12 +1,45 @@
 # bunchofsongs_api
 GrpahQL API for bunchofsongs project
 
-## HOW TO RUN IT LOCALLY:
-1. ```npm i```
-2. ``` Rename the file "src/config_template.js" to "src/config.js" and fill with it with proper info```
-3. ```npm start```
+## SUMMARY:
+This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs
+It is also recommended to run the bot project to test the API properly, as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot.
 
-**NOTE:** A Firebase Database and a Telegram Bot are required to fully start the project locally
+## REQUIREMENTS:
+- Node.js (v14)
+- Firebase Project and Database: https://firebase.google.com/docs/admin/setup#set-up-project-and-service-account
+- Telegram Bot Token: https://core.telegram.org/bots#6-botfather
+
+## HOW TO RUN IT LOCALLY:
+1. ```git clone https://github.com/gilpanal/bunchofsongs_api.git```
+2. ```cd bunchofsongs_api```
+3. ```npm i```
+4. Rename the file `src/config_template.js` to `src/config.js` and fill it with the proper info. See Note 1,2 below.
+5. ```npm start```
+6. Go to http://127.0.0.1:8080
+
+NOTES:
+1.- See: https://firebase.google.com/docs/admin/setup#initialize-sdk
+
+2.- For MODE='DEV' it's enough by changing the following values:
+
+>      const DEV_FIREBASE_API_KEY = <private_key_id>
+>      const DEV_FIREBASE_AUTH_DOMAIN = '127.0.0.1'
+>      const DEV_FIREBASE_DATABASE_URL = 'https://<YOUR_PROJECT>.firebaseio.com'
+>      const DEV_FIREBASE_PROJECT_ID = <project_id>
+>      const DEV_BOT_TOKEN = <BOT_TOKEN>
+
+3.- For the Firebase Database rules, change to:
+
+>     {
+>       "rules": {
+>         ".read": true,
+>         ".write": true,
+>         "songs": {
+>           ".indexOn": ["collection"]
+>         }
+>       }
+>     }
 
 ## EXAMPLES OF REQUESTS:
 
@@ -69,3 +102,9 @@ GrpahQL API for bunchofsongs project
   collection(collectionName:"munsell"){id, title, photo_url}
 }
 ```
+
+## MORE INFO:
+
+Wiki: https://github.com/gilpanal/bunchofsongs_bot/wiki
+
+Project Dev Board: https://github.com/gilpanal/bunchofsongs_bot/projects/1
