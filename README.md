@@ -2,8 +2,8 @@
 GrpahQL API for bunchofsongs project
 
 ## Summary:
-This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs
-It is also recommended to run the bot project to test the API properly, as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. You can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
+This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs. It is also recommended to run the bot project to test the API properly (https://github.com/gilpanal/bunchofsongs_bot), as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. 
+As an option you can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
 
 ## Requirements:
 - Node.js (v14)
