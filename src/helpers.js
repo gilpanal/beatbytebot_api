@@ -1,10 +1,12 @@
 /* https://gist.github.com/Pitasi/574cb19348141d7bf8de83a0555fd2dc */
+/* https://stackoverflow.com/a/21024737 */
 
 const { createHash, createHmac } = require('crypto')
 const axios = require('axios')
+const http = require('http')
 const FormData = require('form-data')
 const songProfile = require('./songProfile')
-const { API_BOT, API_TEL, BOT_TOKEN, FIREBASE_DATABASE_URL } = require('./config')
+const { API_BOT, API_TEL, BOT_TOKEN, FIREBASE_DATABASE_URL, FILES_ENDPOINT } = require('./config')
 
 const secret = createHash('sha256').update(BOT_TOKEN).digest()
 
@@ -91,5 +93,22 @@ module.exports = {
       })
     }       
     return uploadResponse
+  }, 
+  fileDownload(filePath) {
+
+    const file = FILES_ENDPOINT + '/' + filePath
+    return new Promise((resolve, reject) => {
+      http.get(file, (response) => {
+        const data = []
+        response.on('data', (chunk) => {
+          data.push(chunk)
+        }).on('end', () => {
+          const buffer = Buffer.concat(data)
+          resolve(buffer)
+        }).on('error', (err) => {
+          reject(Error('Track ' + filePath + ' failed to load'))
+        })
+      })
+    })
   } 
 }

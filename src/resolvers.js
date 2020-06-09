@@ -54,7 +54,7 @@ const resolvers = {
         const audio = tracksData.message.audio || tracksData.message.voice
         const fileInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${audio.file_id}`)
         const fileInfoJson = await fileInfo.json()
-        const graphqlTracks = trackProfile(tracksData, `${API_TEL}file/bot${BOT_TOKEN}/${fileInfoJson.result.file_path}`)
+        const graphqlTracks = trackProfile(tracksData, fileInfoJson.result.file_path)
         return graphqlTracks
       })
       return mapsKeys

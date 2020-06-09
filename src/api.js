@@ -8,14 +8,14 @@ const path = require('path')
 const multer = require('multer')()
 const { ApolloServer } = require('apollo-server-express')
 const firebase = require('firebase')
-const { API_TEL, BOT_TOKEN, FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_PROJECT_ID } = require('./config')
+const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_PROJECT_ID } = require('./config')
 
 const port = process.env.PORT || 8080
 
 const cors_proxy = require('cors-anywhere')
 const proxy = cors_proxy.createServer({
   originWhitelist: [], // Allow all origins
-  requireHeader: ['origin', 'x-requested-with'],
+  requireHeader: [],
   removeHeaders: ['cookie', 'cookie2']
 })
 
@@ -43,7 +43,7 @@ const graphqlServer = new ApolloServer({
   introspection: true
 })
 
-const { checkSignature, fileUpload } = require('./helpers')
+const { checkSignature, fileUpload, fileDownload } = require('./helpers')
 
 app.use( (req, res, next)  => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -63,6 +63,19 @@ app.get('/proxy/:proxyUrl*', (req, res) => {
   //req.url = req.url.replace('/proxy/', `${API_TEL}file/bot${BOT_TOKEN}/`)
   //console.log(req.url)
   proxy.emit('request', req, res)  
+})
+
+app.get('/fileDownload',  async (req, res) => {    
+  let uploadResponse = { ok: false, result: null, error: 404, description: 'Not Found' }
+  if(req?._parsedUrl?.query){
+    await fileDownload(req._parsedUrl.query).then((audioData) => {             
+      res.send(audioData)
+    }).catch((err) =>{        
+        res.json(uploadResponse)        
+    })
+  } else {    
+    res.json(uploadResponse)
+  } 
 })
 
 app.get('/', (req, res) => {
