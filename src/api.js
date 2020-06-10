@@ -12,13 +12,6 @@ const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_DATABASE_URL, FIREBASE_
 
 const port = process.env.PORT || 8080
 
-const cors_proxy = require('cors-anywhere')
-const proxy = cors_proxy.createServer({
-  originWhitelist: [], // Allow all origins
-  requireHeader: [],
-  removeHeaders: ['cookie', 'cookie2']
-})
-
 const app = express()
 
 const typeDefs = require('./typeDefs')
@@ -57,21 +50,14 @@ app.get('/testFileUploadForm', (req, res) => {
   res.sendFile(path.join(__dirname + '../../test/testForm.html'))
 })
 
-app.get('/proxy/:proxyUrl*', (req, res) => {  
-  // Strip '/proxy' from the front of the URL, else the proxy won't work.
-  req.url = req.url.replace('/proxy/', '/')
-  //req.url = req.url.replace('/proxy/', `${API_TEL}file/bot${BOT_TOKEN}/`)
-  //console.log(req.url)
-  proxy.emit('request', req, res)  
-})
-
-app.get('/fileDownload',  async (req, res) => {    
+app.get('/fileDownload',  async (req, res) => { 
+  
   let uploadResponse = { ok: false, result: null, error: 404, description: 'Not Found' }
   if(req?._parsedUrl?.query){
     await fileDownload(req._parsedUrl.query).then((audioData) => {             
       res.send(audioData)
     }).catch((err) =>{        
-        res.json(uploadResponse)        
+      res.json(uploadResponse)        
     })
   } else {    
     res.json(uploadResponse)

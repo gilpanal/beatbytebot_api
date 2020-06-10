@@ -1,7 +1,7 @@
 const songProfile = require('./songProfile')
 const trackProfile = require('./trackProfile')
 const { checkSignature, getSongsWithCovers } = require('./helpers')
-const { API_TEL, API_BOT, BOT_TOKEN, FIREBASE_DATABASE_URL } = require('./config')
+const { API_BOT, BOT_TOKEN, FIREBASE_DATABASE_URL } = require('./config')
 
 const resolvers = {
   Query: {
@@ -25,7 +25,8 @@ const resolvers = {
           const docInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${dataJson.document.file_id}`)
           const docJson = await docInfo.json()
           if(docJson.ok){
-            doc_url = `${API_TEL}file/bot${BOT_TOKEN}/${docJson.result.file_path}`
+            // TODO: doc_url = null || docJson.result.file_path
+            doc_url = null
           }
         }       
         if(userInfo){   

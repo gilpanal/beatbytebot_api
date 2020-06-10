@@ -3,7 +3,7 @@
 
 const { createHash, createHmac } = require('crypto')
 const axios = require('axios')
-const http = require('http')
+const https = require('https')
 const FormData = require('form-data')
 const songProfile = require('./songProfile')
 const { API_BOT, API_TEL, BOT_TOKEN, FIREBASE_DATABASE_URL, FILES_ENDPOINT } = require('./config')
@@ -62,7 +62,8 @@ module.exports = {
           const photoInfo = await fetch(`${API_BOT + BOT_TOKEN}/getFile?file_id=${songsData.photo}`)
           const photoJson = await photoInfo.json()
           if (photoJson.ok) {
-            photo_url = `${API_TEL}file/bot${BOT_TOKEN}/${photoJson.result.file_path}`
+            // TODO: photo_url = photoJson.result.file_path
+            photo_url = null
           }
         }
         const graphqlSongs = songProfile(songsData, photo_url, null)
@@ -98,7 +99,7 @@ module.exports = {
 
     const file = FILES_ENDPOINT + '/' + filePath
     return new Promise((resolve, reject) => {
-      http.get(file, (response) => {
+      https.get(file, (response) => {
         const data = []
         response.on('data', (chunk) => {
           data.push(chunk)
