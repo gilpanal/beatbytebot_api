@@ -89,7 +89,7 @@ To can check out the live environment: https://bunchofsongsapi.herokuapp.com/gra
 ##### F. Get songs by collection name
 ```
 {
-  collection(collectionName:"munsell"){id, title, photo_url}
+  collection(collectionName:"munsell"){id, title, description}
 }
 ```
 ##### G. Send audio file from web app (See Note 4 above for User Info)
