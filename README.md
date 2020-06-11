@@ -3,7 +3,7 @@ GrpahQL API for bunchofsongs project
 
 ## Summary:
 This is the endpoint for the web application: https://github.com/gilpanal/bunchofsongs. It is also recommended to run the bot project to test the API properly (https://github.com/gilpanal/bunchofsongs_bot), as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. 
-As an option you can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
+As an alternative you can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/bunchofsongs_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
 
 ## Requirements:
 - Node.js (v14)
@@ -14,51 +14,38 @@ As an option you can also grab the file `testDB.json` at `test` folder https://r
 1. ```git clone https://github.com/gilpanal/bunchofsongs_api.git```
 2. ```cd bunchofsongs_api```
 3. ```npm i```
-4. Rename the file `src/config_template.js` to `src/config.js` and fill it with the proper info. See Notes 1,2 below.
+4. Rename the file `src/config_template.js` to `src/config.js` and fill it with the proper info. See Notes 1,3 below.
+4. Rename the file `src/auth/account_template.js` to `src/auth/account_dev.js` and fill it with the proper info. See Notes 2,3 below.
 5. ```npm start```
 6. Go to http://127.0.0.1:8080
 
 #### NOTES:
 
-1.- To collect the right information from Firebase DB check: https://github.com/gilpanal/bunchofsongs_api/wiki/Firebase-Setup
+1.- To collect the right information related to Firebase for `config.js` check: https://github.com/gilpanal/bunchofsongs_api/wiki/Firebase-Setup
 
-2.- For MODE='DEV' it's enough by changing the following values:
+2.- To collect the right information related to Firebase for `account_dev.js` check: https://github.com/gilpanal/bunchofsongs_bot/wiki/Firebase-Setup
 
->      const DEV_FIREBASE_API_KEY = <private_key_id>
->      const DEV_FIREBASE_AUTH_DOMAIN = '127.0.0.1'
->      const DEV_FIREBASE_DATABASE_URL = 'https://<YOUR_PROJECT>.firebaseio.com'
->      const DEV_FIREBASE_PROJECT_ID = <project_id>
->      const DEV_BOT_TOKEN = <BOT_TOKEN>
+3.- `config.js` is meant to control different environments or modes. If `MODE='PROD'` is used another file is required inside `auth` folder => You need to create `account.json`.
 
-3.- For the Firebase Database rules, change to:
-
->     {
->       "rules": {
->         ".read": true,
->         ".write": true,
->         "songs": {
->           ".indexOn": ["collection"]
->         }
->       }
->     }
-
-4.- For Telegram User Info, check widget documentation:https://core.telegram.org/widgets/login
+4.- For Telegram User Info, check widget documentation: https://core.telegram.org/widgets/login
 
 ## How to test it:
+
+To can check out the live environment: https://bunchofsongsapi.herokuapp.com/graphql and run some of the following example queries. In case you are running the project locally you need to adapt the queries with the info from your Firebase DB.
 
 ##### A. Get all song names and other data
 ```
 {
-  songs{id, title, photo_url}
+  songs{id, title, description, collection}
 }
 ```
 ##### B1. Get song info by Id
 ```
 {
-  songInfoById(songId:-455452954){title, doc_url}
+  songInfoById(songId:-1001301741667){title, description, collection}
 }
 ```
-##### B2. Get song info by Id and user logged
+##### B2. Get song info by Id and user logged (See Note 4 above for User Info)
 ```
 {
   songInfoById(songId:-1001476711416, userInfo: { id: 165123,
@@ -73,11 +60,11 @@ As an option you can also grab the file `testDB.json` at `test` folder https://r
 ##### C. Get all tracks from song by Id
 ```
 {
-  tracks(songId:-455452954){ message {voice {mime_type}, audio {title}}, file_path}
+  tracks(songId:-1001301741667){ message {voice {mime_type}, audio {title}}, file_path}
 }
 ```
 
-##### D. Edit message caption to "delete" in chat by Id and completely remove at DB
+##### D. Edit message caption to "delete" in chat by Id and completely remove at DB (See Note 4 above for User Info)
 ```
 {
   deleteMessage(chat_id:-1001476711416,message_id:3, track_id:"AgADOwcAAk_K6FI_1591545625", userInfo: { id: 165123,
@@ -96,7 +83,7 @@ As an option you can also grab the file `testDB.json` at `test` folder https://r
 ##### E. Get file link by id
 ```
 {
-  getFileLink(file_id:"AwACAgQAAx0CWATT-AADA17dDxn-A5N27TXJbV8otSzl_LDpAAI7BwACT8roUtCoJ11NuxV3GgQ"){result {file_path}}
+  getFileLink(file_id:"CQACAgQAAx0CTZcAAWMAA1Fe4S8ImeOKUngKa63rbzuArgjdvQAC6gUAArd0CVMmguTUvBPN6RoE"){result {file_path}}
 }
 ```
 ##### F. Get songs by collection name
@@ -105,8 +92,8 @@ As an option you can also grab the file `testDB.json` at `test` folder https://r
   collection(collectionName:"munsell"){id, title, photo_url}
 }
 ```
-##### G. Send audio file from web app
-Go to http://127.0.0.1:8080/testFileUploadForm and complete the form with the proper information:
+##### G. Send audio file from web app (See Note 4 above for User Info)
+Go to http://127.0.0.1:8080/testFileUploadForm or https://bunchofsongsapi.herokuapp.com/testFileUploadForm and complete the form with the proper information:
 - Chat Id: the id of the channel or group. In exmaple: -455452954, -1001476711416
 - User info: produced by Telegram Login Widget. See Note 4 above. In example:
 >     {
@@ -120,6 +107,12 @@ Go to http://127.0.0.1:8080/testFileUploadForm and complete the form with the pr
 - File data: choose a valid audio file from your browser.
 
 Open the Developer Console Tools from your browser to check the response
+
+##### H. Get audio file  (raw data) from web app
+
+Go to `/fileDownload` and add the `file_path` (see example **E**) to the URL like these examples:
+- http://127.0.0.1:8080/fileDownload?<file_path>
+- https://bunchofsongsapi.herokuapp.com/fileDownload?music/file_403.mp3
 
 ## More info:
 

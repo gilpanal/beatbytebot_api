@@ -2,4 +2,6 @@
 /heroku
 package-lock.json
 src/config.js
+src/auth/account.json
+src/auth/account_dev.json
 test/test_userInfo.js

@@ -6,7 +6,8 @@ const axios = require('axios')
 const https = require('https')
 const FormData = require('form-data')
 const songProfile = require('./songProfile')
-const { API_BOT, API_TEL, BOT_TOKEN, FIREBASE_DATABASE_URL, FILES_ENDPOINT } = require('./config')
+const authGoogleApi = require('./auth/auth')
+const { API_BOT, BOT_TOKEN, FIREBASE_DATABASE_URL, FILES_ENDPOINT } = require('./config')
 
 const secret = createHash('sha256').update(BOT_TOKEN).digest()
 
@@ -20,7 +21,7 @@ const handleResponseFromTelegram = async (responseTelegram, chat_id) => {
 }
 const insertTrackIntoDB = async (audio, chat_id, track_id, data) => {
   let uploadResponse = { ok: false, result: null, error: null, description: null }
-  const url = `${FIREBASE_DATABASE_URL}/songs/${chat_id}/tracks/${track_id}.json`
+  const url = `${FIREBASE_DATABASE_URL}/songs/${chat_id}/tracks/${track_id}.json?access_token=${authGoogleApi().token}`
   const body = { id: audio.file_id, message: data }
   await fetch(url, {
     method: 'PUT',
@@ -32,8 +33,12 @@ const insertTrackIntoDB = async (audio, chat_id, track_id, data) => {
     .catch((error) => {        
       uploadResponse = { ok: false, result: null, error: 404, description: error }
     })
-    .then((response) => {        
-      uploadResponse = { ok: true, result: response, error: null, description: null }
+    .then((response) => {       
+      if(!response.error){
+        uploadResponse = { ok: true, result: response, error: null, description: null }
+      } else {
+        uploadResponse.description = response.error
+      }      
     })  
   return uploadResponse
 }

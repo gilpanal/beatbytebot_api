@@ -1,22 +1,23 @@
 const songProfile = require('./songProfile')
 const trackProfile = require('./trackProfile')
+const authGoogleApi = require('./auth/auth')
 const { checkSignature, getSongsWithCovers } = require('./helpers')
 const { API_BOT, BOT_TOKEN, FIREBASE_DATABASE_URL } = require('./config')
 
 const resolvers = {
   Query: {
     songs: async () => {
-      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs.json`)
+      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs.json?access_token=${authGoogleApi().token}`)      
       const dataJson = await getSongsWithCovers(data)
       return dataJson      
     },
     collection: async (root, { collectionName }) => {
-      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs.json?orderBy="collection"&equalTo="${collectionName}"`)
+      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs.json?access_token=${authGoogleApi().token}&orderBy="collection"&equalTo="${collectionName}"`)
       const dataJson = await getSongsWithCovers(data)
       return dataJson 
     },
     songInfoById: async (root, { songId, userInfo }) => {
-      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs/${songId}.json`)
+      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs/${songId}.json?access_token=${authGoogleApi().token}`)
       const dataJson = await data.json()
       let doc_url = null
       let user_permission = false
@@ -46,7 +47,7 @@ const resolvers = {
       }      
     },
     tracks: async (root, { songId }) => {
-      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs/${songId}/tracks.json`)
+      const data = await fetch(`${FIREBASE_DATABASE_URL}/songs/${songId}/tracks.json?access_token=${authGoogleApi().token}`)
       const dataJson = await data.json()
       if (!dataJson) return null
       const keys = Object.keys(dataJson)
@@ -72,8 +73,9 @@ const resolvers = {
             const data = await fetch(`${API_BOT + BOT_TOKEN}/editMessageCaption?chat_id=${chat_id}&message_id=${message_id}&caption=delete`)            
             dataJson = await data.json()                     
             // will delete from DB independently of message still exists in Telegram
-            const rmDB = await fetch(`${FIREBASE_DATABASE_URL}/songs/${chat_id}/tracks/${track_id}.json`, { method: 'delete' })  
-            dataJson.ok = rmDB.ok                                
+            const rmDB = await fetch(`${FIREBASE_DATABASE_URL}/songs/${chat_id}/tracks/${track_id}.json?access_token=${authGoogleApi().token}`, { method: 'delete' })
+            dataJson.ok = rmDB.ok 
+            dataJson.description = rmDB.statusText                              
           }
         }         
       } else {
