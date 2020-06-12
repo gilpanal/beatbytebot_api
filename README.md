@@ -12,7 +12,7 @@ If you want to see a real example just follow these steps:
 3. Record something or attach an audio file
 4. Visit: https://sheltered-meadow-50218.herokuapp.com/ and check the content was successfully created
 5. Visit https://bunchofsongs.web.app/ to actually listen to your audio tracks
-6. To test the API go to https://bunchofsongsapi.herokuapp.com/graphql and check the examples at: 
+6. To test the API go to https://bunchofsongsapi.herokuapp.com/graphql and check the examples at: [How to test it](#how-to-test-it)
 
 Current Bot features: https://github.com/gilpanal/beatbytebot/wiki/Current-Features
 
