@@ -5,6 +5,17 @@ GrpahQL API for beatbytebot project
 This is the endpoint for the web application: https://github.com/gilpanal/beatbytebot_webapp. It is also recommended to run the bot project to test the API properly (https://github.com/gilpanal/beatbytebot), as the creation of new entries at the DB requires of a first input from a Telegram channel/group processed by the bot. 
 As an alternative you can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/beatbytebot_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
 
+## Demo:
+If you want to see a real example just follow these steps:
+1. In Telegram, create a new channel or group
+2. Add the bot called "bunchofsongsbot" as an admin to the chat
+3. Record something or attach an audio file
+4. Visit: https://sheltered-meadow-50218.herokuapp.com/ and check the content was successfully created
+5. Visit https://bunchofsongs.web.app/ to actually listen to your audio tracks
+6. To test the API go to https://bunchofsongsapi.herokuapp.com/graphql and check the examples at: 
+
+Current Bot features: https://github.com/gilpanal/beatbytebot/wiki/Current-Features
+
 ## Requirements:
 - Node.js (v14)
 - Firebase Project and Database: https://firebase.google.com/docs/admin/setup#set-up-project-and-service-account
