@@ -1,5 +1,5 @@
 {
-  "name": "bunchofsongs_api",
+  "name": "beatbytebot_api",
   "version": "0.0.0",
   "main": "src/api.js",
   "license": "MIT",
