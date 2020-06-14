@@ -5,4 +5,5 @@ package-lock.json
 src/config.js
 src/auth/account.json
 src/auth/account_dev.json
+src/auth/account_stage.json
 test/test_userInfo.js

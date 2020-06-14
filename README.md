@@ -6,7 +6,7 @@ This is the endpoint for the web application: https://github.com/gilpanal/beatby
 As an alternative you can also grab the file `testDB.json` at `test` folder https://raw.githubusercontent.com/gilpanal/beatbytebot_api/master/test/testDB.json and directly import into Firebase DB to simulate the Bot input.
 
 ## Demo:
-If you want to see a real example just follow these steps:
+If you want to see it in action just follow these steps:
 1. In Telegram, create a new channel or group
 2. Add the bot called "bunchofsongsbot" as an admin to the chat
 3. Record something or attach an audio file
@@ -36,7 +36,7 @@ Current Bot features: https://github.com/gilpanal/beatbytebot/wiki/Current-Featu
 
 2.- To collect the right information related to Firebase for `account_dev.js` check: https://github.com/gilpanal/beatbytebot_bot/wiki/Firebase-Setup
 
-3.- `config.js` is meant to control different environments or modes. If `MODE='PROD'` is used another file is required inside `auth` folder => You need to create `account.json`.
+3.- `config.js` is meant to control different environments or modes. In example, if `MODE='PROD'` is used, another file is required inside `auth` folder => You need to create `account.json`.
 
 4.- For Telegram User Info, check widget documentation: https://core.telegram.org/widgets/login
 
