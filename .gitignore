@@ -1,6 +1,5 @@
 /node_modules
-/heroku_dev
-/heroku_prod
+/heroku
 package-lock.json
 src/config.js
 src/auth/account.json
