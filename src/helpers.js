@@ -90,7 +90,9 @@ module.exports = {
       await axios.post(API_BOT + BOT_TOKEN + '/sendAudio', form, {
         headers: {
           'Content-Type': `multipart/form-data; boundary=${form._boundary}`
-        }
+        },
+        'maxContentLength': Infinity,
+        'maxBodyLength': Infinity
       }).then(async (responseTelegram) => {
         uploadResponse = await handleResponseFromTelegram(responseTelegram, req.body.chat_id)      
       }).catch((err) => {  
